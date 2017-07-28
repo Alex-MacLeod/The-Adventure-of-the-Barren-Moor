@@ -3,10 +3,10 @@ package barrenMoor.barrenMoor;
 public class Player {
 	String name;
 	int score;
-	boolean victoryStatus;
-		public Player(String name, int score, boolean victoryStatus) {
+	boolean victory;
+		public Player(String name, int score, boolean victory) {
 			this.score = score;
-			this.victoryStatus = victoryStatus;
+			this.victory = victory;
 			this.name = name;
 		}
 		public String getName() {
@@ -21,10 +21,10 @@ public class Player {
 		public void setScore(int score) {
 			this.score = score;
 		}
-		public boolean isVictoryStatus() {
-			return victoryStatus;
+		public boolean isVictory() {
+			return victory;
 		}
-		public void setVictoryStatus(boolean victoryStatus) {
-			this.victoryStatus = victoryStatus;
+		public void setVictory(boolean victory) {
+			this.victory = victory;
 		}
 }

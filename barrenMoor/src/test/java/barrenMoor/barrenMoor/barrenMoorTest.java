@@ -79,17 +79,9 @@ public class barrenMoorTest extends TestCase {
 		Player testPlayer1 = new Player ("David", 12000, false);
 		Player testPlayer2 = new Player ("Procopis", 400, false);
 		test.scoreCheck(testPlayer1);
-		assertTrue(testPlayer1.victoryStatus);
+		assertTrue(testPlayer1.victory);
 		
 		test.scoreCheck(testPlayer2);
-		assertFalse(testPlayer2.victoryStatus);
-	}
-	
-	@Test
-	public void testWin() {
-		Player testPlayer1 = new Player ("David", 12000, true);
-		Player testPlayer2 = new Player ("Procopis", 400, false);
-		test.win(testPlayer1);
-		test.win(testPlayer2);
+		assertFalse(testPlayer2.victory);
 	}
 }

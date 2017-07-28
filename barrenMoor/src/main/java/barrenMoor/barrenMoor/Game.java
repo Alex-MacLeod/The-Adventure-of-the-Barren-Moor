@@ -1,13 +1,14 @@
 package barrenMoor.barrenMoor;
 
+import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
 	public int[] createPoint(int[] point) {
-		if (Math.abs(point[0]) > 5 || Math.abs(point[1]) > 5) {
-			int xPoint = ThreadLocalRandom.current().nextInt(-5, 5 + 1);
-			int yPoint = ThreadLocalRandom.current().nextInt(-5, 5 + 1);
+		if ((point[0] == 0 && point[1] == 0) || Math.abs(point[0]) > 3 || Math.abs(point[1]) > 3) {
+			int xPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+			int yPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
 			point[0] = xPoint;
 			point[1] = yPoint;
 			return point;
@@ -16,14 +17,14 @@ public class Game {
 		}
 	}
 	
-	public double calculateDistance(int[] point) {
-		double distance = Math.sqrt(point[0]*point[0] + point[1]*point[1]);
+	public float calculateDistance(int[] point) {
+		float distance = (float) Math.sqrt(point[0]*point[0] + point[1]*point[1]);
 		return distance;
 	}
 	public Enum<Directions> findDirection(int[] point) {
 		double angle = Math.atan2(point[1], point[0]);
 		Directions eventDirection = null;
-		if (angle <= Math.PI/16 && angle > -Math.PI/16) {
+		if (angle <= Math.PI/8 && angle > -Math.PI/8) {
 			eventDirection = Directions.East;
 		} else if (angle <= 3*Math.PI/8 && angle > Math.PI/8) {
 			eventDirection = Directions.NorthEast;
@@ -68,25 +69,25 @@ public class Game {
 	
 	public void checkCompass(int[] point) {
 		System.out.println("The compass is pointing " + findDirection(point) + ".");
-		System.out.println("The dial reads " + calculateDistance(point) + " miles.");
+		System.out.println("The display reads: " + calculateDistance(point) + " miles.");
 	}
 	
-	public void startEvent(Player player, Event e) {
-		player.score = player.score + e.value;
+	public void startEvent(HashMap<Integer, Event> H, Player player) {
+		int random1to3 = 1 + (int)Math.round(Math.random())*2;
+		Event event = H.get(random1to3);
+		if (event.getClass().getSimpleName().equals("Treasure")) {
+			System.out.println("You have found a great oak chest filled with treasure!");
+		}
+		player.score = player.score + event.value;
+		System.out.println("You earn " + event.value + " points!");
 	}
 	
 	public void scoreCheck(Player player) {
-		if (player.score > 10000) {
-			player.setVictoryStatus(true);
-			System.out.println("You have " + player.score + " points");
+		if (player.score >= 10000) {
+			player.setVictory(true);
+			System.out.println("You now have " + player.score + " points");
 		} else {
-			System.out.println("You have " + player.score + " points");
-		}
-	}
-	
-	public void win(Player player) {
-		if (player.victoryStatus) {
-			System.out.println("Congratulations, " + player.name + "! You have won the game");
+			System.out.println("You now have " + player.score + " points");
 		}
 	}
 }

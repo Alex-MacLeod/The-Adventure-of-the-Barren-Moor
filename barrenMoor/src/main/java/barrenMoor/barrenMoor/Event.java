@@ -5,5 +5,4 @@ public class Event {
  		public Event(int value) {
  			this.value = value;
  		}
- 	
 }
