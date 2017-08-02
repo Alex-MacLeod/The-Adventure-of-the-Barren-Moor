@@ -1,4 +1,4 @@
-package barrenMoor.barrenMoor;
+package gamebarrenmoor;
 
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -49,16 +49,16 @@ public class Game {
 	public int[] walk(int[] point) {
 		System.out.println("Do you want to go North, South, East, or West?");
 		String d = Input.scan.next();
-		if (d.equals("North")) {
+		if ("North".equals(d)) {
 			point[1] = point[1] - 1;
 			System.out.println("You walk " + d + " for one mile.");
-		} else if (d.equals("South")) {
+		} else if ("South".equals(d)) {
 			point[1] = point[1] + 1;
 			System.out.println("You walk " + d + " for one mile.");
-		} else if (d.equals("East")) {
+		} else if ("East".equals(d)) {
 			point[0] = point[0] - 1;
 			System.out.println("You walk " + d + " for one mile.");
-		} else if (d.equals("West")) {
+		} else if ("West".equals(d)) {
 			point[0] = point[0] + 1;
 			System.out.println("You walk " + d + " for one mile.");
 		} else {

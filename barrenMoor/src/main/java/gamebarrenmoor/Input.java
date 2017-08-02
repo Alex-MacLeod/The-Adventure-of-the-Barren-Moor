@@ -1,4 +1,4 @@
-package barrenMoor.barrenMoor;
+package gamebarrenmoor;
 
 import java.util.Scanner;
 

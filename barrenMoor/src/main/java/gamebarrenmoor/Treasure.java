@@ -1,4 +1,4 @@
-package barrenMoor.barrenMoor;
+package gamebarrenmoor;
 
 public class Treasure extends Event{
 
