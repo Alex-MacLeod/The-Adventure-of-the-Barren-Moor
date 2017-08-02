@@ -1,12 +1,11 @@
 package barrenMoor.barrenMoor;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import junit.framework.TestCase;
 
 public class barrenMoorTest extends TestCase {
-	Game test = new Game();
+	private Game test = new Game();
 	
 	@Test
 	public void testCreatePoint() {

@@ -1,7 +1,7 @@
 package barrenMoor.barrenMoor;
 
 public class Event {
-	int value;
+	protected int value;
  		public Event(int value) {
  			this.value = value;
  		}

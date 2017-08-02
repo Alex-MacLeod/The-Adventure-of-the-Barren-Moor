@@ -1,8 +1,8 @@
 package barrenMoor.barrenMoor;
 
 public class Player {
-	String name;
-	int score;
+	protected String name;
+	protected int score;
 	boolean victory;
 		public Player(String name, int score, boolean victory) {
 			this.score = score;

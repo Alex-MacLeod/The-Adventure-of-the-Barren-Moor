@@ -3,5 +3,5 @@ package barrenMoor.barrenMoor;
 import java.util.Scanner;
 
 public class Input {
-	static Scanner scan = new Scanner(System.in);
+	public static Scanner scan = new Scanner(System.in);
 }
