@@ -7,7 +7,7 @@ import gamebarrenmoor.Game;
 import gamebarrenmoor.Player;
 import junit.framework.TestCase;
 
-public class barrenMoorTest extends TestCase {
+public class BarrenMoorTest extends TestCase {
 	private Game test = new Game();
 	
 	@Test
