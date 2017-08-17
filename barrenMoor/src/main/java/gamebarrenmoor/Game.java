@@ -18,8 +18,7 @@ public class Game {
 	}
 	
 	public float calculateDistance(int[] point) {
-		float distance = (float) Math.sqrt(point[0]*point[0] + point[1]*point[1]);
-		return distance;
+		return (float) Math.sqrt(point[0]*point[0] + point[1]*point[1]);
 	}
 	public Enum<Directions> findDirection(int[] point) {
 		double angle = Math.atan2(point[1], point[0]);
@@ -46,7 +45,7 @@ public class Game {
 		return eventDirection;
 	}
 	
-	public int[] walk(int[] point) {
+	void walk(int[] point) {
 		System.out.println("Do you want to go North, South, East, or West?");
 		String d = Input.scan.next();
 		if ("North".equals(d)) {
@@ -64,15 +63,14 @@ public class Game {
 		} else {
 			System.out.println("Sorry, which direction?");
 		}
-		return point;
 	}
-	
-	public void checkCompass(int[] point) {
+
+	void checkCompass(int[] point) {
 		System.out.println("The compass is pointing " + findDirection(point) + ".");
 		System.out.println("The display reads: " + calculateDistance(point) + " miles.");
 	}
 	
-	public void startEvent(HashMap<Integer, Event> H, Player player) {
+	void startEvent(HashMap<Integer, Event> H, Player player) {
 		int random1to3 = 1 + (int)Math.round(Math.random())*2;
 		Event event = H.get(random1to3);
 		if (event.getClass().getSimpleName().equals("Treasure")) {
@@ -82,12 +80,5 @@ public class Game {
 		System.out.println("You earn " + event.value + " points!");
 	}
 	
-	public void scoreCheck(Player player) {
-		if (player.score >= 10000) {
-			player.setVictory(true);
-			System.out.println("You now have " + player.score + " points");
-		} else {
-			System.out.println("You now have " + player.score + " points");
-		}
-	}
+
 }

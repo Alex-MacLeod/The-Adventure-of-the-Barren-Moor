@@ -17,7 +17,7 @@ public class RunGame {
 		Event e2 = new Treasure(5000);
 		Event e3 = new Treasure(10000);
 		
-		HashMap<Integer, Event> H = new HashMap<Integer, Event>();
+		HashMap<Integer, Event> H = new HashMap<>();
 		H.put(1, e1);
 		H.put(2, e2);
 		H.put(3, e3);
@@ -46,7 +46,7 @@ public class RunGame {
 			if (point[0] == 0 && point[1] == 0) {
 				System.out.println("You can now see what the device was pointing you towards");
 				g.startEvent(H, player);
-				g.scoreCheck(player);
+				player.scoreCheck(player);
 			}
 			g.createPoint(point);
 		} while (!player.isVictory());

@@ -1,8 +1,8 @@
 package gamebarrenmoor;
 
-public class Event {
-	protected int value;
- 		public Event(int value) {
+class Event {
+	int value;
+ 		Event(int value) {
  			this.value = value;
  		}
 }

@@ -1,25 +1,25 @@
 package testgame;
 
-import org.junit.Test;
-
 import gamebarrenmoor.Directions;
 import gamebarrenmoor.Game;
 import gamebarrenmoor.Player;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class BarrenMoorTest extends TestCase {
+import static org.junit.Assert.*;
+
+public class BarrenMoorTest {
 	private Game test = new Game();
 	
 	@Test
 	public void testCreatePoint() {
 		int[] initialPoint1 = {8, 8};
-		assertTrue(Math.abs(test.createPoint(initialPoint1)[0])<=5 && Math.abs(test.createPoint(initialPoint1)[1])<=5);
+		assertTrue(Math.abs(test.createPoint(initialPoint1)[0]) <= 5 && Math.abs(test.createPoint(initialPoint1)[1]) <= 5);
 	}
 	
 	@Test
 	public void testCalcuateDistance() {
 		int[] testPoint = {4, 3};
-		assertEquals((double)5, test.calculateDistance(testPoint));
+		assertEquals((float) 5, test.calculateDistance(testPoint), 0.01);
 	}
 	
 	@Test
@@ -78,12 +78,12 @@ public class BarrenMoorTest extends TestCase {
 	
 	@Test
 	public void testScoreCheck() {
-		Player testPlayer1 = new Player ("David", 12000, false);
+	    Player testPlayer1 = new Player ("David", 12000, false);
 		Player testPlayer2 = new Player ("Procopis", 400, false);
-		test.scoreCheck(testPlayer1);
+        testPlayer1.scoreCheck(testPlayer1);
 		assertTrue(testPlayer1.victory);
-		
-		test.scoreCheck(testPlayer2);
+
+        testPlayer2.scoreCheck(testPlayer2);
 		assertFalse(testPlayer2.victory);
 	}
 }
