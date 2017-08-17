@@ -45,7 +45,7 @@ public class Game {
 		return eventDirection;
 	}
 	
-	void walk(int[] point) {
+	public void walk(int[] point) {
 		System.out.println("Do you want to go North, South, East, or West?");
 		String d = Input.scan.next();
 		if ("North".equals(d)) {
@@ -65,12 +65,12 @@ public class Game {
 		}
 	}
 
-	void checkCompass(int[] point) {
+	protected void checkCompass(int[] point) {
 		System.out.println("The compass is pointing " + findDirection(point) + ".");
 		System.out.println("The display reads: " + calculateDistance(point) + " miles.");
 	}
-	
-	void startEvent(HashMap<Integer, Event> H, Player player) {
+
+	protected void startEvent(HashMap<Integer, Event> H, Player player) {
 		int random1to3 = 1 + (int)Math.round(Math.random())*2;
 		Event event = H.get(random1to3);
 		if (event.getClass().getSimpleName().equals("Treasure")) {
