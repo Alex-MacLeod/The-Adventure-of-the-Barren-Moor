@@ -12,7 +12,7 @@ public class RunGame {
 
 	public static void main(String[] args) {
 		
-		GameManager g = new GameManager();
+		GameManager gameManager = new GameManager();
 		
 		System.out.println("Welcome to The Adventure of the Barren Moor!");
 		System.out.println("Please enter your name below:");
@@ -36,7 +36,7 @@ public class RunGame {
 		System.out.println("You feel something strange in your pocket.");
 		
 		int[] point = {0, 0};
-		g.createPoint(point);
+		gameManager.createPoint(point);
 		
 		System.out.println("You take it out and examine it.");
 		System.out.println("It looks a bit like a pocket watch. However, there is only one hand, "
@@ -46,15 +46,15 @@ public class RunGame {
 		System.out.println("You decide to follow it.");
 		
 		do {
-			g.checkCompass(point);
-			g.walk(point);
+			gameManager.checkCompass(point);
+			gameManager.walk(point);
 			System.out.println("You take a moment to check the device.");
 			if (point[0] == 0 && point[1] == 0) {
 				System.out.println("You can now see what the device was pointing you towards");
-				g.startEvent(H, player);
+				gameManager.startEvent(eventMap, player);
 				player.scoreCheck(player);
 			}
-			g.createPoint(point);
+			gameManager.createPoint(point);
 		} while (!player.isVictory());
 		
 		System.out.println("Congratulations, " + player.getName() + "! You have won the game");
