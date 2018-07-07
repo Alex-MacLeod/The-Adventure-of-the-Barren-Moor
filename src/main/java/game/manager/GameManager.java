@@ -14,6 +14,11 @@ public class GameManager {
 		if ((point[0] == 0 && point[1] == 0) || Math.abs(point[0]) > 3 || Math.abs(point[1]) > 3) {
 			int xPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
 			int yPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+
+			if (xPoint == 0 && yPoint == 0) {
+			    createPoint(point);
+            }
+
 			point[0] = xPoint;
 			point[1] = yPoint;
 			return point;
