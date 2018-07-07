@@ -23,10 +23,10 @@ public class RunGame {
 		Event e2 = new Treasure(5000);
 		Event e3 = new Treasure(10000);
 		
-		HashMap<Integer, Event> H = new HashMap<>();
-		H.put(1, e1);
-		H.put(2, e2);
-		H.put(3, e3);
+		HashMap<Integer, Event> eventMap = new HashMap<>();
+		eventMap.put(1, e1);
+		eventMap.put(2, e2);
+		eventMap.put(3, e3);
 		
 		System.out.println("You awaken to find yourself alone, lying cold and wet on a barren moor.");
 		System.out.println("Slowly, you pick yourself up from the ground and take in your bleak surroundings.");
