@@ -49,7 +49,6 @@ public class BarrenMoorTest {
 //		test.walk(testPoint);
 //		//walk North
 //		assertEquals(3, testPoint[1]);
-//
 //	}
 //
 //	@Test
