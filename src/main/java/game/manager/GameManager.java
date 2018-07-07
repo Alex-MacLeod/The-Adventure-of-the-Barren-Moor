@@ -82,8 +82,8 @@ public class GameManager {
 		if (event.getClass().getSimpleName().equals("Treasure")) {
 			System.out.println("You have found a great oak chest filled with treasure!");
 		}
-		player.score = player.score + event.value;
-		System.out.println("You earn " + event.value + " points!");
+		player.score = player.score + event.getValue();
+		System.out.println("You earn " + event.getValue() + " points!");
 	}
 	
 

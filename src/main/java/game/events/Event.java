@@ -1,8 +1,18 @@
 package game.events;
 
 public class Event {
-	public int value;
+	private int value;
+
 	Event(int value) {
 		this.value = value;
 	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
 }
