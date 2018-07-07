@@ -1,7 +1,13 @@
 package game.utils;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Input {
-	public static final Scanner scan = new Scanner(System.in);
+
+	private Input() {
+
+	}
+
+	public static final Scanner scan = new Scanner(System.in, StandardCharsets.UTF_8.name());
 }
