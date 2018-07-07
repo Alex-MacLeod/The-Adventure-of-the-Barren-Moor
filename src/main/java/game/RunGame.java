@@ -17,7 +17,7 @@ public class RunGame {
 		System.out.println("Welcome to The Adventure of the Barren Moor!");
 		System.out.println("Please enter your name below:");
 		String n = Input.scan.next();
-		Player player = new Player(n, 0, false);
+		Player player = new Player(n);
 		
 		Event e1 = new Treasure(5000);
 		Event e2 = new Treasure(5000);
@@ -57,7 +57,7 @@ public class RunGame {
 			g.createPoint(point);
 		} while (!player.isVictory());
 		
-		System.out.println("Congratulations, " + player.name + "! You have won the game");
+		System.out.println("Congratulations, " + player.getName() + "! You have won the game");
 
 	}
 
