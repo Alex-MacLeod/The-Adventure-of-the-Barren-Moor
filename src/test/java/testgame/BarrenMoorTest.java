@@ -32,14 +32,14 @@ public class BarrenMoorTest {
 		int[] testPoint6 = {-3, -3};
 		int[] testPoint7 = {-6, 0};
 		int[] testPoint8 = {-2, 2};
-		assertEquals(Directions.North, test.findDirection(testPoint1));
-		assertEquals(Directions.NorthEast, test.findDirection(testPoint2));
-		assertEquals(Directions.East, test.findDirection(testPoint3));
-		assertEquals(Directions.SouthEast, test.findDirection(testPoint4));
-		assertEquals(Directions.South, test.findDirection(testPoint5));
-		assertEquals(Directions.SouthWest, test.findDirection(testPoint6));
-		assertEquals(Directions.West, test.findDirection(testPoint7));
-		assertEquals(Directions.NorthWest, test.findDirection(testPoint8));
+		assertEquals(Directions.NORTH, test.findDirection(testPoint1));
+		assertEquals(Directions.NORTH_EAST, test.findDirection(testPoint2));
+		assertEquals(Directions.EAST, test.findDirection(testPoint3));
+		assertEquals(Directions.SOUTH_EAST, test.findDirection(testPoint4));
+		assertEquals(Directions.SOUTH, test.findDirection(testPoint5));
+		assertEquals(Directions.SOUTH_WEST, test.findDirection(testPoint6));
+		assertEquals(Directions.WEST, test.findDirection(testPoint7));
+		assertEquals(Directions.NORTH_WEST, test.findDirection(testPoint8));
 		
 	}
 	

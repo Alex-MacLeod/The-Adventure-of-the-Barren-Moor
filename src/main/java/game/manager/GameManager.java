@@ -30,21 +30,21 @@ public class GameManager {
 		double angle = Math.atan2(point[1], point[0]);
 		Directions eventDirection = null;
 		if (angle <= Math.PI/8 && angle > -Math.PI/8) {
-			eventDirection = Directions.East;
+			eventDirection = Directions.EAST;
 		} else if (angle <= 3*Math.PI/8 && angle > Math.PI/8) {
-			eventDirection = Directions.NorthEast;
+			eventDirection = Directions.NORTH_EAST;
 		} else if (angle <= 5*Math.PI/8 && angle > 3*Math.PI/8) {
-			eventDirection = Directions.North;
+			eventDirection = Directions.NORTH;
 		} else if (angle <= 7*Math.PI/8 && angle > 5*Math.PI/8) {
-			eventDirection = Directions.NorthWest;
+			eventDirection = Directions.NORTH_WEST;
 		} else if (angle <= -7*Math.PI/8 || angle > 7*Math.PI/8) {
-			eventDirection = Directions.West;
+			eventDirection = Directions.WEST;
 		} else if (angle <= -5*Math.PI/8 && angle > -7*Math.PI/8) {
-			eventDirection = Directions.SouthWest;
+			eventDirection = Directions.SOUTH_WEST;
 		} else if (angle <= -3*Math.PI/8 && angle > -5*Math.PI/8) {
-			eventDirection = Directions.South;
+			eventDirection = Directions.SOUTH;
 		} else if (angle <= -Math.PI/8 && angle > -3*Math.PI/8) {
-			eventDirection = Directions.SouthEast;
+			eventDirection = Directions.SOUTH_EAST;
 		} else {
 			System.out.println("Error");
 		}
@@ -53,19 +53,19 @@ public class GameManager {
 	
 	public void walk(int[] point) {
 		System.out.println("Do you want to go North, South, East, or West?");
-		String d = Input.scan.next();
-		if ("North".equals(d)) {
+		String direction = Input.scan.next();
+		if ("North".equalsIgnoreCase(direction)) {
 			point[1] = point[1] - 1;
-			System.out.println("You walk " + d + " for one mile.");
-		} else if ("South".equals(d)) {
+			System.out.println("You walk north for one mile.");
+		} else if ("South".equalsIgnoreCase(direction)) {
 			point[1] = point[1] + 1;
-			System.out.println("You walk " + d + " for one mile.");
-		} else if ("East".equals(d)) {
+			System.out.println("You walk south for one mile.");
+		} else if ("East".equalsIgnoreCase(direction)) {
 			point[0] = point[0] - 1;
-			System.out.println("You walk " + d + " for one mile.");
-		} else if ("West".equals(d)) {
+			System.out.println("You walk east for one mile.");
+		} else if ("West".equalsIgnoreCase(direction)) {
 			point[0] = point[0] + 1;
-			System.out.println("You walk " + d + " for one mile.");
+			System.out.println("You walk west for one mile.");
 		} else {
 			System.out.println("Sorry, which direction?");
 		}
