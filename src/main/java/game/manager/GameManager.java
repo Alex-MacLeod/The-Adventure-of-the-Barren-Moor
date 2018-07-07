@@ -7,12 +7,9 @@ import game.utils.Directions;
 import game.utils.Input;
 
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameManager {
-
-    Random randomNumberGenerator = new Random();
 
 	public int[] createPoint(int[] point) {
 		if ((point[0] == 0 && point[1] == 0) || Math.abs(point[0]) > 3 || Math.abs(point[1]) > 3) {
@@ -86,7 +83,7 @@ public class GameManager {
 	}
 
 	public void startEvent(Map<Integer, Event> eventMap, Player player) {
-		int random1to3 = 1 + randomNumberGenerator.nextInt(2);
+		int random1to3 = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 		Event event = eventMap.get(random1to3);
 		if (event instanceof Treasure) {
 			System.out.println("You have found a great oak chest filled with treasure!");
