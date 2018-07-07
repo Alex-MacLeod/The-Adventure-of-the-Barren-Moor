@@ -1,4 +1,10 @@
-package gamebarrenmoor;
+package game;
+
+import game.events.Event;
+import game.events.Treasure;
+import game.manager.GameManager;
+import game.player.Player;
+import game.utils.Input;
 
 import java.util.HashMap;
 
@@ -6,7 +12,7 @@ public class RunGame {
 
 	public static void main(String[] args) {
 		
-		Game g = new Game();
+		GameManager g = new GameManager();
 		
 		System.out.println("Welcome to The Adventure of the Barren Moor!");
 		System.out.println("Please enter your name below:");

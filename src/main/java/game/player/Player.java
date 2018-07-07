@@ -1,15 +1,15 @@
-package gamebarrenmoor;
+package game.player;
 
 public class Player {
-	protected String name;
-    protected int score;
+	public String name;
+	public int score;
 	public boolean victory;
 		public Player(String name, int score, boolean victory) {
 			this.score = score;
 			this.victory = victory;
 			this.name = name;
 		}
-	protected boolean isVictory() {
+	public boolean isVictory() {
 			return victory;
 		}
 

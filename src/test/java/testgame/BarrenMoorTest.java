@@ -1,14 +1,14 @@
 package testgame;
 
-import gamebarrenmoor.Directions;
-import gamebarrenmoor.Game;
-import gamebarrenmoor.Player;
+import game.manager.GameManager;
+import game.player.Player;
+import game.utils.Directions;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BarrenMoorTest {
-	private Game test = new Game();
+	private GameManager test = new GameManager();
 	
 	@Test
 	public void testCreatePoint() {
@@ -78,7 +78,7 @@ public class BarrenMoorTest {
 	
 	@Test
 	public void testScoreCheck() {
-	    Player testPlayer1 = new Player ("David", 12000, false);
+	    Player testPlayer1 = new Player("David", 12000, false);
 		Player testPlayer2 = new Player ("Procopis", 400, false);
         testPlayer1.scoreCheck(testPlayer1);
 		assertTrue(testPlayer1.victory);
