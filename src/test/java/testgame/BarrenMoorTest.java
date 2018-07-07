@@ -49,9 +49,9 @@ public class BarrenMoorTest {
 //		test.walk(testPoint);
 //		//walk North
 //		assertEquals(3, testPoint[1]);
-//		
+//
 //	}
-//	
+//
 //	@Test
 //	public void testWalkEast() {
 //		int[] testPoint = {4, 3};
@@ -59,7 +59,7 @@ public class BarrenMoorTest {
 //		//walk East
 //		assertEquals(3, testPoint[0]);
 //	}
-//	
+//
 //	@Test
 //	public void testWalkSouth() {
 //		int[] testPoint = {4, 3};
@@ -67,7 +67,7 @@ public class BarrenMoorTest {
 //		//walk South
 //		assertEquals(4, testPoint[1]);
 //	}
-//	
+//
 //	@Test
 //	public void testWalkWest() {
 //		int[] testPoint = {4, 3};
@@ -78,12 +78,15 @@ public class BarrenMoorTest {
 	
 	@Test
 	public void testScoreCheck() {
-	    Player testPlayer1 = new Player("David", 12000, false);
-		Player testPlayer2 = new Player ("Procopis", 400, false);
+	    Player testPlayer1 = new Player("David");
+		Player testPlayer2 = new Player ("Procopis");
+		testPlayer1.addPoints(10000);
+		testPlayer2.addPoints(5000);
+
         testPlayer1.scoreCheck(testPlayer1);
-		assertTrue(testPlayer1.victory);
+		assertTrue(testPlayer1.isVictory());
 
         testPlayer2.scoreCheck(testPlayer2);
-		assertFalse(testPlayer2.victory);
+		assertFalse(testPlayer2.isVictory());
 	}
 }
