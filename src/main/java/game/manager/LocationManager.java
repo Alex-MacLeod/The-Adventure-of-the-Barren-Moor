@@ -5,27 +5,27 @@ import game.utils.Input;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GameManager {
+public class LocationManager {
 
-	private int[] point;
+	private int[] location;
 
-	public GameManager () {
-		this.point = new int[]{0, 0};
+	public LocationManager() {
+		this.location = new int[]{0, 0};
 	}
 
     public int getXCoord() {
-        return this.point[0];
+        return this.location[0];
     }
 
     public int getYCoord() {
-        return this.point[1];
+        return this.location[1];
     }
 
-    public void setPoint(int xCoord, int yCoord) {
-        this.point = new int[]{xCoord, yCoord};
+    public void setLocation(int xCoord, int yCoord) {
+        this.location = new int[]{xCoord, yCoord};
     }
 
-    public void refreshPoint() {
+    public void refresh() {
 	    int xPoint;
 	    int yPoint;
         do {
@@ -33,20 +33,20 @@ public class GameManager {
             yPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
         } while (xPoint == 0 && yPoint == 0);
 
-		this.point[0] = xPoint;
-		this.point[1] = yPoint;
+		this.location[0] = xPoint;
+		this.location[1] = yPoint;
 	}
 
-	public boolean isAtOrigin() {
-		return point[0] == 0 && point[1] == 0;
+	public boolean isOrigin() {
+		return location[0] == 0 && location[1] == 0;
 	}
 	
 	public float calculateDistance() {
-		return (float) Math.sqrt((double)this.point[0]*this.point[0] + (double)this.point[1]*this.point[1]);
+		return (float) Math.sqrt((double)this.location[0]*this.location[0] + (double)this.location[1]*this.location[1]);
 	}
 
 	public Enum<Directions> findDirection() {
-		double angle = Math.atan2(this.point[1], this.point[0]);
+		double angle = Math.atan2(this.location[1], this.location[0]);
 		Directions eventDirection = null;
 		if (angle <= Math.PI/8 && angle > -Math.PI/8) {
 			eventDirection = Directions.EAST;
@@ -74,16 +74,16 @@ public class GameManager {
 		System.out.println("Do you want to go North, South, East, or West?");
 		String direction = Input.scan.next();
 		if ("North".equalsIgnoreCase(direction)) {
-			this.point[1]--;
+			this.location[1]--;
 			System.out.println("You walk north for one mile.");
 		} else if ("South".equalsIgnoreCase(direction)) {
-			this.point[1]++;
+			this.location[1]++;
 			System.out.println("You walk south for one mile.");
 		} else if ("East".equalsIgnoreCase(direction)) {
-			this.point[0]--;
+			this.location[0]--;
 			System.out.println("You walk east for one mile.");
 		} else if ("West".equalsIgnoreCase(direction)) {
-			this.point[0]++;
+			this.location[0]++;
 			System.out.println("You walk west for one mile.");
 		} else {
 			System.out.println("Sorry, which direction?");

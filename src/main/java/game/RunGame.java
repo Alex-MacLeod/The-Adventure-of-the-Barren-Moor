@@ -2,7 +2,7 @@ package game;
 
 import game.events.Event;
 import game.events.Treasure;
-import game.manager.GameManager;
+import game.manager.LocationManager;
 import game.player.Player;
 import game.utils.Input;
 
@@ -13,10 +13,10 @@ public class RunGame {
 
 	public static void main(String[] args) {
 		
-		GameManager game = new GameManager();
+		LocationManager location = new LocationManager();
 
 		System.out.println("Welcome to The Adventure of the Barren Moor!");
-		System.out.println("Please enter your inputName below:");
+		System.out.println("Please enter your name below:");
 		String inputName = Input.scan.next();
 		Player player = new Player(inputName);
 		
@@ -40,10 +40,10 @@ public class RunGame {
 		System.out.println("You decide to follow it.");
 		
 		do {
-			game.checkCompass();
-			game.walk();
+			location.checkCompass();
+			location.walk();
 			System.out.println("You take a moment to check the device.");
-			if (game.isAtOrigin()) {
+			if (location.isOrigin()) {
 				int randomKey = ThreadLocalRandom.current().nextInt(1, eventMap.size() + 1);
 				Event randomEvent = eventMap.get(randomKey);
 				System.out.println("You can now see what the device was pointing you towards");
@@ -60,8 +60,8 @@ public class RunGame {
 				}
 
 			}
-			if (game.isAtOrigin() || game.getXCoord() > 3 || game.getYCoord() > 3) {
-				game.refreshPoint();
+			if (location.isOrigin() || location.getXCoord() > 3 || location.getYCoord() > 3) {
+				location.refresh();
 			}
 		} while (!player.isVictory());
 		

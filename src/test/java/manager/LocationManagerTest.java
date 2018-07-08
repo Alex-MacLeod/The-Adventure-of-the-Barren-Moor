@@ -1,53 +1,53 @@
 package manager;
 
-import game.manager.GameManager;
+import game.manager.LocationManager;
 import game.utils.Directions;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class GameManagerTest {
+public class LocationManagerTest {
 
-    private GameManager testGame = new GameManager();
+    private LocationManager testGame = new LocationManager();
 
     @Test
     public void refreshPoint_shouldRefreshPointWhenTooFarFromPoint() {
-        testGame.setPoint(8, 8);
-        testGame.refreshPoint();
+        testGame.setLocation(8, 8);
+        testGame.refresh();
         assertTrue(testGame.getXCoord() <= 3 && testGame.getYCoord() <= 3);
     }
 
     @Test
     public void calculateDistance_shouldCalculateTheAbsoluteDistanceToThePoint() {
-        testGame.setPoint(4, 3);
+        testGame.setLocation(4, 3);
         assertEquals((float) 5, testGame.calculateDistance(), 0.01);
     }
 
     @Test
     public void findDirection_shouldDetermineDirectionBasedOnPoint() {
-        testGame.setPoint(0, 3);
+        testGame.setLocation(0, 3);
         assertEquals(Directions.NORTH, testGame.findDirection());
 
-        testGame.setPoint(2, 2);
+        testGame.setLocation(2, 2);
         assertEquals(Directions.NORTH_EAST, testGame.findDirection());
 
-        testGame.setPoint(4, 0);
+        testGame.setLocation(4, 0);
         assertEquals(Directions.EAST, testGame.findDirection());
 
-        testGame.setPoint(1, -1);
+        testGame.setLocation(1, -1);
         assertEquals(Directions.SOUTH_EAST, testGame.findDirection());
 
-        testGame.setPoint(0, -5);
+        testGame.setLocation(0, -5);
         assertEquals(Directions.SOUTH, testGame.findDirection());
 
-        testGame.setPoint(-3, -3);
+        testGame.setLocation(-3, -3);
         assertEquals(Directions.SOUTH_WEST, testGame.findDirection());
 
-        testGame.setPoint(-6, 0);
+        testGame.setLocation(-6, 0);
         assertEquals(Directions.WEST, testGame.findDirection());
 
-        testGame.setPoint(-2, 2);
+        testGame.setLocation(-2, 2);
         assertEquals(Directions.NORTH_WEST, testGame.findDirection());
 
     }
