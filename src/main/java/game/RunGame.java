@@ -16,18 +16,14 @@ public class RunGame {
 		GameManager game = new GameManager();
 
 		System.out.println("Welcome to The Adventure of the Barren Moor!");
-		System.out.println("Please enter your name below:");
-		String name = Input.scan.next();
-		Player player = new Player(name);
-		
-		Event event1 = new Treasure(5000);
-		Event event2 = new Treasure(5000);
-		Event event3 = new Treasure(10000);
+		System.out.println("Please enter your inputName below:");
+		String inputName = Input.scan.next();
+		Player player = new Player(inputName);
 		
 		HashMap<Integer, Event> eventMap = new HashMap<>();
-		eventMap.put(1, event1);
-		eventMap.put(2, event2);
-		eventMap.put(3, event3);
+		eventMap.put(1, new Treasure(5000));
+		eventMap.put(2, new Treasure(5000));
+		eventMap.put(3, new Treasure(10000));
 		
 		System.out.println("You awaken to find yourself alone, lying cold and wet on a barren moor.");
 		System.out.println("Slowly, you pick yourself up from the ground and take in your bleak surroundings.");
@@ -54,16 +50,27 @@ public class RunGame {
 
 				randomEvent.playEvent();
 
-				player.addPoints(randomEvent.getValue());
-				System.out.println("You earn " + randomEvent.getValue() + " points!");
-				player.checkScore();
+				if (randomEvent.isCompleted()) {
+					eventMap.remove(randomKey);
+					player.addPoints(randomEvent.getValue());
+					System.out.println("You earn " + randomEvent.getValue() + " points!");
+					player.checkScore();
+				} else {
+					return;
+				}
+
 			}
 			if (game.isAtOrigin() || game.getXCoord() > 3 || game.getYCoord() > 3) {
 				game.refreshPoint();
 			}
 		} while (!player.isVictory());
 		
-		System.out.println("Congratulations, " + player.getName() + "! You have won the game");
+		if (player.isVictory()) {
+			System.out.println("Congratulations, " + player.getName() + "! You have won the game");
+		} else {
+			System.out.println("You are lost in the barren moor forever");
+			System.out.println("Bad luck, " + player.getName() + "! You have lost the game");
+		}
 	}
 
 }

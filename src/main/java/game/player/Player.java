@@ -31,9 +31,7 @@ public class Player {
 	public void checkScore() {
 		if (this.score >= 10000) {
 			this.victory = true;
-			System.out.println("You now have " + this.score + " points");
-		} else {
-			System.out.println("You now have " + this.score + " points");
 		}
+		System.out.println("You now have " + this.score + " points");
 	}
 }
