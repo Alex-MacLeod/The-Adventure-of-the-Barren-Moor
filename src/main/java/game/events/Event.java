@@ -11,4 +11,8 @@ public class Event {
 		return value;
 	}
 
+	public void playEvent() {
+
+	}
+
 }

@@ -1,6 +1,7 @@
 package game.player;
 
 public class Player {
+
 	private String name;
 	private int score;
 	private boolean victory;
@@ -27,16 +28,12 @@ public class Player {
 		return victory;
 	}
 
-	public void setVictory(boolean victory) {
-		this.victory = victory;
-	}
-
-	public void scoreCheck(Player player) {
-		if (player.score >= 10000) {
-			player.victory = true;
-			System.out.println("You now have " + player.score + " points");
+	public void checkScore() {
+		if (this.score >= 10000) {
+			this.victory = true;
+			System.out.println("You now have " + this.score + " points");
 		} else {
-			System.out.println("You now have " + player.score + " points");
+			System.out.println("You now have " + this.score + " points");
 		}
 	}
 }

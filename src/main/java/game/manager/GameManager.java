@@ -1,39 +1,52 @@
 package game.manager;
 
-import game.events.Event;
-import game.events.Treasure;
-import game.player.Player;
 import game.utils.Directions;
 import game.utils.Input;
 
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameManager {
 
-	public int[] createPoint(int[] point) {
-		if ((point[0] == 0 && point[1] == 0) || Math.abs(point[0]) > 3 || Math.abs(point[1]) > 3) {
-			int xPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
-			int yPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+	private int[] point;
 
-			if (xPoint == 0 && yPoint == 0) {
-			    createPoint(point);
-            }
+	public GameManager () {
+		this.point = new int[]{0, 0};
+	}
 
-			point[0] = xPoint;
-			point[1] = yPoint;
-			return point;
-		} else {
-			return point;
-		}
+    public int getXCoord() {
+        return this.point[0];
+    }
+
+    public int getYCoord() {
+        return this.point[1];
+    }
+
+    public void setPoint(int xCoord, int yCoord) {
+        this.point = new int[]{xCoord, yCoord};
+    }
+
+    public void refreshPoint() {
+	    int xPoint;
+	    int yPoint;
+        do {
+            xPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+            yPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+        } while (xPoint == 0 && yPoint == 0);
+
+		this.point[0] = xPoint;
+		this.point[1] = yPoint;
+	}
+
+	public boolean isAtOrigin() {
+		return point[0] == 0 && point[1] == 0;
 	}
 	
-	public float calculateDistance(int[] point) {
-		return (float) Math.sqrt((double)point[0]*point[0] + (double)point[1]*point[1]);
+	public float calculateDistance() {
+		return (float) Math.sqrt((double)this.point[0]*this.point[0] + (double)this.point[1]*this.point[1]);
 	}
 
-	public Enum<Directions> findDirection(int[] point) {
-		double angle = Math.atan2(point[1], point[0]);
+	public Enum<Directions> findDirection() {
+		double angle = Math.atan2(this.point[1], this.point[0]);
 		Directions eventDirection = null;
 		if (angle <= Math.PI/8 && angle > -Math.PI/8) {
 			eventDirection = Directions.EAST;
@@ -52,45 +65,33 @@ public class GameManager {
 		} else if (angle <= -Math.PI/8 && angle > -3*Math.PI/8) {
 			eventDirection = Directions.SOUTH_EAST;
 		} else {
-			System.out.println("Error");
+			System.err.println("Error");
 		}
 		return eventDirection;
 	}
 	
-	public void walk(int[] point) {
+	public void walk() {
 		System.out.println("Do you want to go North, South, East, or West?");
 		String direction = Input.scan.next();
 		if ("North".equalsIgnoreCase(direction)) {
-			point[1] = point[1] - 1;
+			this.point[1]--;
 			System.out.println("You walk north for one mile.");
 		} else if ("South".equalsIgnoreCase(direction)) {
-			point[1] = point[1] + 1;
+			this.point[1]++;
 			System.out.println("You walk south for one mile.");
 		} else if ("East".equalsIgnoreCase(direction)) {
-			point[0] = point[0] - 1;
+			this.point[0]--;
 			System.out.println("You walk east for one mile.");
 		} else if ("West".equalsIgnoreCase(direction)) {
-			point[0] = point[0] + 1;
+			this.point[0]++;
 			System.out.println("You walk west for one mile.");
 		} else {
 			System.out.println("Sorry, which direction?");
 		}
 	}
 
-	public void checkCompass(int[] point) {
-		System.out.println("The compass is pointing " + findDirection(point) + ".");
-		System.out.println("The display reads: " + calculateDistance(point) + " miles.");
-	}
-
-	public void startEvent(Map<Integer, Event> eventMap, Player player) {
-		int random1to3 = ThreadLocalRandom.current().nextInt(1, 3 + 1);
-		Event event = eventMap.get(random1to3);
-		if (event instanceof Treasure) {
-			System.out.println("You have found a great oak chest filled with treasure!");
-		}
-		player.addPoints(event.getValue());
-		System.out.println("You earn " + event.getValue() + " points!");
-	}
-	
-
+	public void checkCompass() {
+        System.out.println("The compass is pointing " + findDirection() + ".");
+        System.out.println("The display reads: " + calculateDistance() + " miles.");
+    }
 }
