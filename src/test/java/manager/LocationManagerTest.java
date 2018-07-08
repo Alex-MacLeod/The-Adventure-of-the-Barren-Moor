@@ -12,20 +12,20 @@ public class LocationManagerTest {
     private LocationManager testGame = new LocationManager();
 
     @Test
-    public void refreshPoint_shouldRefreshPointWhenTooFarFromPoint() {
+    public void refresh_shouldRefreshWhenTooFarFromOrigin() {
         testGame.setLocation(8, 8);
         testGame.refresh();
         assertTrue(testGame.getXCoord() <= 3 && testGame.getYCoord() <= 3);
     }
 
     @Test
-    public void calculateDistance_shouldCalculateTheAbsoluteDistanceToThePoint() {
+    public void calculateDistance_shouldCalculateTheAbsoluteDistanceToLocation() {
         testGame.setLocation(4, 3);
         assertEquals((float) 5, testGame.calculateDistance(), 0.01);
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionBasedOnPoint() {
+    public void findDirection_shouldDetermineDirectionOfTravelToLocation() {
         testGame.setLocation(0, 3);
         assertEquals(Directions.NORTH, testGame.findDirection());
 

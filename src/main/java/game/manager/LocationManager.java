@@ -29,8 +29,8 @@ public class LocationManager {
 	    int xPoint;
 	    int yPoint;
         do {
-            xPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
-            yPoint = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+            xPoint = ThreadLocalRandom.current().nextInt(-2, 2 + 1);
+            yPoint = ThreadLocalRandom.current().nextInt(-2, 2 + 1);
         } while (xPoint == 0 && yPoint == 0);
 
 		this.location[0] = xPoint;
