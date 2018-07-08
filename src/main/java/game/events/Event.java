@@ -11,8 +11,4 @@ public class Event {
 		return value;
 	}
 
-	public void setValue(int value) {
-		this.value = value;
-	}
-
 }
