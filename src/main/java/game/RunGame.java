@@ -47,7 +47,6 @@ public class RunGame {
 			System.out.println("You take a moment to check the device.");
 			if (location.isOrigin()) {
 				int randomIndex = ThreadLocalRandom.current().nextInt(0, eventList.size());
-				System.out.println("INDEX: " + randomIndex);
 				Event randomEvent = eventList.get(randomIndex);
 				System.out.println("You can now see what the device was pointing you towards");
 
