@@ -16,9 +16,9 @@ public class PlayerTest {
         testPlayer2.addPoints(5000);
 
         testPlayer1.checkScore();
-        assertTrue(testPlayer1.isVictory());
+        assertTrue(testPlayer1.isVictorious());
 
         testPlayer2.checkScore();
-        assertFalse(testPlayer2.isVictory());
+        assertFalse(testPlayer2.isVictorious());
     }
 }
