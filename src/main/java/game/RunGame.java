@@ -60,9 +60,8 @@ public class RunGame {
 				} else {
 					return;
 				}
-
 			}
-			if (location.isOrigin() || location.getXCoord() > 3 || location.getYCoord() > 3) {
+			if (location.isOrigin() || Math.abs(location.getXCoord()) > 3 || Math.abs(location.getYCoord()) > 3) {
 				location.refresh();
 			}
 		} while (!player.isVictory());
