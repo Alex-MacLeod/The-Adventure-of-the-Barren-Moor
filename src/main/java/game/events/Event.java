@@ -1,6 +1,6 @@
 package game.events;
 
-public class Event {
+public abstract class Event {
 	private int value;
 	private boolean completed;
 
