@@ -39,7 +39,6 @@ public class RunGame {
 		System.out.println("You decide to follow it.");
 
 		LocationManager location = new LocationManager();
-		location.refresh();
 
 		do {
 			location.checkCompass();
@@ -64,9 +63,9 @@ public class RunGame {
 			if (location.isOrigin() || Math.abs(location.getXCoord()) > 3 || Math.abs(location.getYCoord()) > 3) {
 				location.refresh();
 			}
-		} while (!player.isVictory());
+		} while (!player.isVictorious());
 		
-		if (player.isVictory()) {
+		if (player.isVictorious()) {
 			System.out.println("Congratulations, " + player.getName() + "! You have won the game");
 		} else {
 			System.out.println("You are lost in the barren moor forever");

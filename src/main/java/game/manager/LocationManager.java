@@ -11,6 +11,7 @@ public class LocationManager {
 
 	public LocationManager() {
 		this.location = new int[]{0, 0};
+		this.refresh();
 	}
 
     public int getXCoord() {
@@ -48,24 +49,25 @@ public class LocationManager {
 	public Enum<Directions> findDirection() {
 		double angle = Math.atan2(this.location[1], this.location[0]);
 		Directions eventDirection = null;
-		if (angle <= Math.PI/8 && angle > -Math.PI/8) {
+
+		if (Math.abs(angle) <= Math.PI/8) {
 			eventDirection = Directions.EAST;
-		} else if (angle <= 3*Math.PI/8 && angle > Math.PI/8) {
+		} else if (Math.abs(angle - Math.PI/4) <= Math.PI/8) {
 			eventDirection = Directions.NORTH_EAST;
-		} else if (angle <= 5*Math.PI/8 && angle > 3*Math.PI/8) {
+		} else if (Math.abs(angle - Math.PI/2) <= Math.PI/8) {
 			eventDirection = Directions.NORTH;
-		} else if (angle <= 7*Math.PI/8 && angle > 5*Math.PI/8) {
+		} else if (Math.abs(angle - 3*Math.PI/4) <= Math.PI/8) {
 			eventDirection = Directions.NORTH_WEST;
-		} else if (angle <= -7*Math.PI/8 || angle > 7*Math.PI/8) {
-			eventDirection = Directions.WEST;
-		} else if (angle <= -5*Math.PI/8 && angle > -7*Math.PI/8) {
-			eventDirection = Directions.SOUTH_WEST;
-		} else if (angle <= -3*Math.PI/8 && angle > -5*Math.PI/8) {
-			eventDirection = Directions.SOUTH;
-		} else if (angle <= -Math.PI/8 && angle > -3*Math.PI/8) {
+		} else if (Math.abs(angle + Math.PI/4) <= Math.PI/8) {
 			eventDirection = Directions.SOUTH_EAST;
+		} else if (Math.abs(angle + Math.PI/2) <= Math.PI/8) {
+			eventDirection = Directions.SOUTH;
+		} else if (Math.abs(angle + 3*Math.PI/4) <= Math.PI/8) {
+			eventDirection = Directions.SOUTH_WEST;
+		} else if (Math.abs(angle) >= 7*Math.PI/8) {
+			eventDirection = Directions.WEST;
 		} else {
-			System.err.println("Error");
+			System.err.println("Direction error, angle is: " + angle);
 		}
 		return eventDirection;
 	}
