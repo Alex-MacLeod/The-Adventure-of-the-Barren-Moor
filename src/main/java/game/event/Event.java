@@ -1,11 +1,16 @@
-package game.events;
+package game.event;
 
 public abstract class Event {
-	private int value;
+	private final int value;
 	private boolean completed;
 
 	Event(int value) {
 		this.value = value;
+		this.completed = false;
+	}
+
+	Event() {
+		this.value = 0;
 		this.completed = false;
 	}
 
@@ -17,7 +22,7 @@ public abstract class Event {
 		return completed;
 	}
 
-	public void playEvent() {
+	public void play() {
 		this.completed = true;
 	}
 

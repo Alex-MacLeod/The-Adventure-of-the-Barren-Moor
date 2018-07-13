@@ -1,7 +1,7 @@
 package events;
 
-import game.events.Event;
-import game.events.Treasure;
+import game.event.Event;
+import game.event.Treasure;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -14,7 +14,7 @@ public class EventTest {
         Event testEvent = new Treasure(0);
         assertFalse(testEvent.isCompleted());
 
-        testEvent.playEvent();
+        testEvent.play();
         assertTrue(testEvent.isCompleted());
     }
 }
