@@ -1,32 +1,30 @@
 package game.manager;
 
-import game.utils.Directions;
-import game.utils.Input;
+import game.util.Directions;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class LocationManager {
+public final class Location {
 
-	private int[] location;
+	private static int[] relativeLocation = new int[]{0, 0};
 
-	public LocationManager() {
-		this.location = new int[]{0, 0};
-		this.refresh();
+	private Location() {
+
 	}
 
-    public int getXCoord() {
-        return this.location[0];
+    public static int getXCoord() {
+        return relativeLocation[0];
     }
 
-    public int getYCoord() {
-        return this.location[1];
+    public static int getYCoord() {
+        return relativeLocation[1];
     }
 
-    public void setLocation(int xCoord, int yCoord) {
-        this.location = new int[]{xCoord, yCoord};
+    public static void setLocation(int xCoord, int yCoord) {
+        relativeLocation = new int[]{xCoord, yCoord};
     }
 
-    public void refresh() {
+    public static void refresh() {
 	    int xPoint;
 	    int yPoint;
         do {
@@ -34,20 +32,20 @@ public class LocationManager {
             yPoint = ThreadLocalRandom.current().nextInt(-2, 2 + 1);
         } while (xPoint == 0 && yPoint == 0);
 
-		this.location[0] = xPoint;
-		this.location[1] = yPoint;
+		relativeLocation[0] = xPoint;
+		relativeLocation[1] = yPoint;
 	}
 
-	public boolean isOrigin() {
-		return location[0] == 0 && location[1] == 0;
+	public static boolean isOrigin() {
+		return relativeLocation[0] == 0 && relativeLocation[1] == 0;
 	}
 	
-	public float calculateDistance() {
-		return (float) Math.sqrt((double)this.location[0]*this.location[0] + (double)this.location[1]*this.location[1]);
+	public static float calculateDistance() {
+		return (float) Math.sqrt((double) relativeLocation[0]* relativeLocation[0] + (double) relativeLocation[1]* relativeLocation[1]);
 	}
 
-	public Enum<Directions> findDirection() {
-		double angle = Math.atan2(this.location[1], this.location[0]);
+	public static Enum<Directions> findDirection() {
+		double angle = Math.atan2(relativeLocation[1], relativeLocation[0]);
 		Directions eventDirection = null;
 
 		if (Math.abs(angle) <= Math.PI/8) {
@@ -72,28 +70,21 @@ public class LocationManager {
 		return eventDirection;
 	}
 	
-	public void walk() {
-		System.out.println("Do you want to go North, South, East, or West?");
-		String direction = Input.scan.next();
+	public static void walk(String direction) {
 		if ("North".equalsIgnoreCase(direction)) {
-			this.location[1]--;
+			relativeLocation[1]--;
 			System.out.println("You walk north for one mile.");
 		} else if ("South".equalsIgnoreCase(direction)) {
-			this.location[1]++;
+			relativeLocation[1]++;
 			System.out.println("You walk south for one mile.");
 		} else if ("East".equalsIgnoreCase(direction)) {
-			this.location[0]--;
+			relativeLocation[0]--;
 			System.out.println("You walk east for one mile.");
 		} else if ("West".equalsIgnoreCase(direction)) {
-			this.location[0]++;
+			relativeLocation[0]++;
 			System.out.println("You walk west for one mile.");
 		} else {
 			System.out.println("Sorry, which direction?");
 		}
 	}
-
-	public void checkCompass() {
-        System.out.println("The compass is pointing " + findDirection() + ".");
-        System.out.println("The display reads: " + calculateDistance() + " miles.");
-    }
 }
