@@ -38,7 +38,7 @@ public class RunGame {
 				Event randomEvent = eventList.get(randomIndex);
 				System.out.println("You can now see what the device was pointing you towards");
 
-				randomEvent.playEvent();
+				randomEvent.play();
 
 				if (randomEvent.isCompleted()) {
 					eventList.remove(randomEvent);
