@@ -30,10 +30,11 @@ public class RunGame {
 		introduction.play();
 
 		do {
-			location.checkCompass();
-			location.walk();
-			System.out.println("You take a moment to check the device.");
-			if (location.isOrigin()) {
+			if (Location.isOrigin() || Math.abs(Location.getXCoord()) > 3 || Math.abs(Location.getYCoord()) > 3) {
+				Location.refresh();
+			}
+			player.decideNextAction();
+			if (Location.isOrigin()) {
 				int randomIndex = ThreadLocalRandom.current().nextInt(0, eventList.size());
 				Event randomEvent = eventList.get(randomIndex);
 				System.out.println("You can now see what the device was pointing you towards");
