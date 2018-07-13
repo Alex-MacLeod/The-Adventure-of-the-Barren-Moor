@@ -1,4 +1,4 @@
-package game.utils;
+package game.util;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
