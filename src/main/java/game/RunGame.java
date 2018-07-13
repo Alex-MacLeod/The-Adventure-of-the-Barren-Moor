@@ -1,10 +1,11 @@
 package game;
 
-import game.events.Event;
-import game.events.Treasure;
-import game.manager.LocationManager;
+import game.event.Event;
+import game.event.Introduction;
+import game.event.Treasure;
+import game.manager.Location;
 import game.player.Player;
-import game.utils.Input;
+import game.util.Input;
 
 import java.util.ArrayList;
 import java.util.List;
