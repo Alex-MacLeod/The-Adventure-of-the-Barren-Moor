@@ -41,17 +41,16 @@ public class RunGame {
 
 				randomEvent.play();
 
-				if (randomEvent.isCompleted()) {
-					eventList.remove(randomEvent);
-					player.addPoints(randomEvent.getValue());
-					System.out.println("You earn " + randomEvent.getValue() + " points!");
-					player.checkScore();
-				} else {
-					return;
+				if (!randomEvent.isCompleted()) {
+					break;
 				}
-			}
-			if (location.isOrigin() || Math.abs(location.getXCoord()) > 3 || Math.abs(location.getYCoord()) > 3) {
-				location.refresh();
+				eventList.remove(randomEvent);
+				System.out.println("You earn " + randomEvent.getValue() + " points!");
+				player.addPoints(randomEvent.getValue());
+				System.out.println("You now have " + player.getScore() + " points");
+				if (player.getScore() >= 10000) {
+					player.wins();
+				}
 			}
 		} while (!player.isVictorious());
 		
