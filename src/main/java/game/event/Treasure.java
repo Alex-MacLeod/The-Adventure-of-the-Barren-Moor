@@ -1,4 +1,4 @@
-package game.events;
+package game.event;
 
 public class Treasure extends Event{
 
@@ -7,8 +7,8 @@ public class Treasure extends Event{
 	}
 
 	@Override
-	public void playEvent() {
+	public void play() {
 		System.out.println("You have found a great oak chest filled with treasure!");
-		super.playEvent();
+		super.play();
 	}
 }
