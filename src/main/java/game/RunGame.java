@@ -53,7 +53,8 @@ public class RunGame {
 				}
 			}
 		} while (!player.isVictorious());
-		
+
+		Input.scan.close();
 		if (player.isVictorious()) {
 			System.out.println("Congratulations, " + player.getName() + "! You have won the game");
 		} else {
