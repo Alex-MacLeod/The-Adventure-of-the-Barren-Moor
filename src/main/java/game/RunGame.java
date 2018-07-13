@@ -17,7 +17,7 @@ public class RunGame {
 
 		System.out.println("Welcome to The Adventure of the Barren Moor!");
 		System.out.println("Please enter your name below:");
-		String inputName = Input.scan.next();
+		String inputName = Input.scan.nextLine();
 		Player player = new Player(inputName);
 
 		List<Event> eventList = new ArrayList<>();
