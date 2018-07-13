@@ -3,7 +3,7 @@ package game.util;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Input {
+public final class Input {
 
 	private Input() {
 
