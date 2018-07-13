@@ -4,7 +4,7 @@ import game.event.Event;
 import game.event.Introduction;
 import game.event.Treasure;
 import game.manager.Location;
-import game.player.Player;
+import game.character.Player;
 import game.util.Input;
 
 import java.util.ArrayList;

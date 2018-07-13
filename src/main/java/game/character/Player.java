@@ -1,26 +1,22 @@
-package game.player;
+package game.character;
 
 import game.manager.Location;
 import game.util.Input;
 
-public class Player {
+import java.util.Objects;
 
-	private final String name;
+public class Player extends Character{
+
 	private int score;
-
     private boolean victorious;
 
 	public Player(String name) {
+	    super(name);
 		this.score = 0;
 		this.victorious = false;
-		this.name = name;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getScore() {
+    public int getScore() {
 		return score;
 	}
 
@@ -74,5 +70,16 @@ public class Player {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        Player player = (Player) o;
+        return score == player.score && victorious == player.victorious;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(score, victorious);
+    }
 }
