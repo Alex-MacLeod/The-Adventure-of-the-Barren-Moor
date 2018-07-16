@@ -60,7 +60,6 @@ public class RunGame {
 		if (player.isVictorious()) {
 			System.out.println("Congratulations, " + player.getName() + "! You have won the game");
 		} else {
-			System.out.println("You are lost in the barren moor forever");
 			System.out.println("Bad luck, " + player.getName() + "! You have lost the game");
 		}
 	}
