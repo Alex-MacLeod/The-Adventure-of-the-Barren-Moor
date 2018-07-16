@@ -41,7 +41,7 @@ public final class Location {
 	}
 	
 	public static float calculateDistance() {
-		return (float) Math.sqrt((double) relativeLocation[0]* relativeLocation[0] + (double) relativeLocation[1]* relativeLocation[1]);
+		return (float) Math.sqrt(relativeLocation[0]^2 + relativeLocation[1]^2);
 	}
 
 	public static Enum<Directions> findDirection() {
