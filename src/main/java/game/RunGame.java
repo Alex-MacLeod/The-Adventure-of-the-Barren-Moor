@@ -1,8 +1,6 @@
 package game;
 
-import game.event.Event;
-import game.event.Introduction;
-import game.event.Treasure;
+import game.event.*;
 import game.manager.Location;
 import game.character.Player;
 import game.util.Input;
@@ -12,6 +10,10 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RunGame {
+
+	private static final int WIN_SCORE = 5000;
+	private static final int RESET_DISTANCE = 3;
+	private static final int ZERO = 0;
 
 	public static void main(String[] args) {
 
@@ -23,19 +25,19 @@ public class RunGame {
 		Introduction introduction = new Introduction();
 
 		List<Event> eventList = new ArrayList<>();
-		eventList.add(new Treasure(5000));
-		eventList.add(new Treasure(5000));
-		eventList.add(new Treasure(10000));
+		eventList.add(new SmallTreasure());
+		eventList.add(new SmallTreasure());
+		eventList.add(new BigTreasure());
 
 		introduction.play();
 
 		do {
-			if (Location.isOrigin() || Math.abs(Location.getXCoord()) > 3 || Math.abs(Location.getYCoord()) > 3) {
+			if (Location.isOrigin() || Location.calculateDistance() > RESET_DISTANCE) {
 				Location.refresh();
 			}
 			player.decideNextAction();
 			if (Location.isOrigin()) {
-				int randomIndex = ThreadLocalRandom.current().nextInt(0, eventList.size());
+				int randomIndex = ThreadLocalRandom.current().nextInt(ZERO, eventList.size());
 				Event randomEvent = eventList.get(randomIndex);
 				System.out.println("You can now see what the device was pointing you towards");
 
@@ -48,7 +50,7 @@ public class RunGame {
 				System.out.println("You earn " + randomEvent.getValue() + " points!");
 				player.addPoints(randomEvent.getValue());
 				System.out.println("You now have " + player.getScore() + " points");
-				if (player.getScore() >= 10000) {
+				if (player.getScore() >= WIN_SCORE) {
 					player.wins();
 				}
 			}
