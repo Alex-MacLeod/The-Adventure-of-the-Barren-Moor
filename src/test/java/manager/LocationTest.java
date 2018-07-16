@@ -23,62 +23,97 @@ public class LocationTest {
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelToLocation() {
+    public void findDirection_shouldDetermineDirectionOfTravelIsNorth() {
         Location.setLocation(0, 3);
         assertEquals(Directions.NORTH, Location.findDirection());
-
-        Location.setLocation(2, 2);
-        assertEquals(Directions.NORTH_EAST, Location.findDirection());
-
-        Location.setLocation(4, 0);
-        assertEquals(Directions.EAST, Location.findDirection());
-
-        Location.setLocation(1, -1);
-        assertEquals(Directions.SOUTH_EAST, Location.findDirection());
-
-        Location.setLocation(0, -5);
-        assertEquals(Directions.SOUTH, Location.findDirection());
-
-        Location.setLocation(-3, -3);
-        assertEquals(Directions.SOUTH_WEST, Location.findDirection());
-
-        Location.setLocation(-6, 0);
-        assertEquals(Directions.WEST, Location.findDirection());
-
-        Location.setLocation(-2, 2);
-        assertEquals(Directions.NORTH_WEST, Location.findDirection());
-
     }
 
-//	@Test
-//	public void testWalkNorth() {
-//		int[] testPoint = {4, 3};
-//		testGame.walk(testPoint);
-//		//walk North
-//		assertEquals(3, testPoint[1]);
-//	}
-//
-//	@Test
-//	public void testWalkEast() {
-//		int[] testPoint = {4, 3};
-//		testGame.walk(testPoint);
-//		//walk East
-//		assertEquals(3, testPoint[0]);
-//	}
-//
-//	@Test
-//	public void testWalkSouth() {
-//		int[] testPoint = {4, 3};
-//		testGame.walk(testPoint);
-//		//walk South
-//		assertEquals(4, testPoint[1]);
-//	}
-//
-//	@Test
-//	public void testWalkWest() {
-//		int[] testPoint = {4, 3};
-//		testGame.walk(testPoint);
-//		//walk West
-//		assertEquals(5, testPoint[0]);
-//	}
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsNorthEast() {
+        Location.setLocation(2, 2);
+        assertEquals(Directions.NORTH_EAST, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsEast() {
+        Location.setLocation(4, 0);
+        assertEquals(Directions.EAST, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsSouthEast() {
+        Location.setLocation(1, -1);
+        assertEquals(Directions.SOUTH_EAST, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsSouth() {
+        Location.setLocation(0, -5);
+        assertEquals(Directions.SOUTH, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsSouthWest() {
+        Location.setLocation(-3, -3);
+        assertEquals(Directions.SOUTH_WEST, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsWest() {
+        Location.setLocation(-6, 0);
+        assertEquals(Directions.WEST, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldDetermineDirectionOfTravelIsNorthWest() {
+        Location.setLocation(-2, 2);
+        assertEquals(Directions.NORTH_WEST, Location.findDirection());
+    }
+
+    @Test
+    public void findDirection_shouldReturnUnknownIfAtOrigin() {
+        Location.setLocation(0, 0);
+        assertEquals(Directions.UNKNOWN, Location.findDirection());
+    }
+
+	@Test
+	public void walk_shouldMovePlayerNorth() {
+        Location.setLocation(-2,0);
+		Location.walk("north");
+
+		assertEquals(-1, Location.getYCoord());
+	}
+
+	@Test
+	public void walk_shouldMovePlayerEast() {
+        Location.setLocation(4, 3);
+        Location.walk("east");
+
+        assertEquals(3, Location.getXCoord());
+	}
+
+	@Test
+	public void walk_shouldMovePlayerSouth() {
+        Location.setLocation(-1,2);
+        Location.walk("South");
+
+        assertEquals(3, Location.getYCoord());
+	}
+
+	@Test
+	public void walk_shouldMovePlayerWest() {
+        Location.setLocation(0,1);
+        Location.walk("West");
+
+        assertEquals(1, Location.getXCoord());
+	}
+
+    @Test
+    public void walk_shouldNotMovePlayerIfUnknownDirection() {
+        Location.setLocation(2,1);
+        Location.walk("behind");
+
+        assertEquals(2, Location.getXCoord());
+        assertEquals(1, Location.getYCoord());
+    }
 }

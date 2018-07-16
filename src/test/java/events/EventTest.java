@@ -1,6 +1,7 @@
 package events;
 
 import game.event.Event;
+import game.event.SmallTreasure;
 import game.event.Treasure;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public class EventTest {
 
     @Test
     public void playEvent_shouldSetEventAsCompleted(){
-        Event testEvent = new Treasure(0);
+        Event testEvent = new SmallTreasure();
         assertFalse(testEvent.isCompleted());
 
         testEvent.play();

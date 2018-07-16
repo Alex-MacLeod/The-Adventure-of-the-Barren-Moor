@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class Location {
 
-	private static int[] relativeLocation = new int[]{0, 0};
+    private static int[] relativeLocation = new int[]{0, 0};
 
 	private Location() {
 
@@ -41,50 +41,67 @@ public final class Location {
 	}
 	
 	public static float calculateDistance() {
-		return (float) Math.sqrt(relativeLocation[0]^2 + relativeLocation[1]^2);
+		return (float) Math.sqrt(Math.pow(relativeLocation[0], 2) + Math.pow(relativeLocation[1], 2));
 	}
 
-	public static Enum<Directions> findDirection() {
-		double angle = Math.atan2(relativeLocation[1], relativeLocation[0]);
-		Directions eventDirection = null;
+	public static Directions findDirection() {
+	    double angle = Math.atan2(relativeLocation[1], relativeLocation[0]);
+
+		if (Location.isOrigin()) {
+		    return Directions.UNKNOWN;
+        }
 
 		if (Math.abs(angle) <= Math.PI/8) {
-			eventDirection = Directions.EAST;
+			return Directions.EAST;
 		} else if (Math.abs(angle - Math.PI/4) <= Math.PI/8) {
-			eventDirection = Directions.NORTH_EAST;
+			return Directions.NORTH_EAST;
 		} else if (Math.abs(angle - Math.PI/2) <= Math.PI/8) {
-			eventDirection = Directions.NORTH;
+			return Directions.NORTH;
 		} else if (Math.abs(angle - 3*Math.PI/4) <= Math.PI/8) {
-			eventDirection = Directions.NORTH_WEST;
+			return Directions.NORTH_WEST;
 		} else if (Math.abs(angle + Math.PI/4) <= Math.PI/8) {
-			eventDirection = Directions.SOUTH_EAST;
+			return Directions.SOUTH_EAST;
 		} else if (Math.abs(angle + Math.PI/2) <= Math.PI/8) {
-			eventDirection = Directions.SOUTH;
+			return Directions.SOUTH;
 		} else if (Math.abs(angle + 3*Math.PI/4) <= Math.PI/8) {
-			eventDirection = Directions.SOUTH_WEST;
+			return Directions.SOUTH_WEST;
 		} else if (Math.abs(angle) >= 7*Math.PI/8) {
-			eventDirection = Directions.WEST;
+			return Directions.WEST;
 		} else {
 			System.err.println("Direction error, angle is: " + angle);
+			return Directions.UNKNOWN;
 		}
-		return eventDirection;
 	}
 	
 	public static void walk(String direction) {
-		if ("North".equalsIgnoreCase(direction)) {
-			relativeLocation[1]--;
-			System.out.println("You walk north for one mile.");
-		} else if ("South".equalsIgnoreCase(direction)) {
-			relativeLocation[1]++;
-			System.out.println("You walk south for one mile.");
-		} else if ("East".equalsIgnoreCase(direction)) {
-			relativeLocation[0]--;
-			System.out.println("You walk east for one mile.");
-		} else if ("West".equalsIgnoreCase(direction)) {
-			relativeLocation[0]++;
-			System.out.println("You walk west for one mile.");
-		} else {
-			System.out.println("Sorry, which direction?");
-		}
+	    Directions walkingDirection = Directions.UNKNOWN;
+	    for (Directions dir : Directions.values()) {
+	        if (dir.toString().equalsIgnoreCase(direction)) {
+	            walkingDirection = dir;
+                break;
+            }
+        }
+        String notification = "You walk " + walkingDirection.getLowercase() + " for one mile.";
+        switch (walkingDirection) {
+            case NORTH:
+                relativeLocation[1]--;
+                System.out.println(notification);
+                break;
+            case EAST:
+                relativeLocation[0]--;
+                System.out.println(notification);
+                break;
+            case SOUTH:
+                relativeLocation[1]++;
+                System.out.println(notification);
+                break;
+            case WEST:
+                relativeLocation[0]++;
+                System.out.println(notification);
+                break;
+	        default:
+                System.out.println("You can only walk North, South, East, or West");
+	            break;
+        }
 	}
 }

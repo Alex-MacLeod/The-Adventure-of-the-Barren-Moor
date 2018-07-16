@@ -44,7 +44,7 @@ public class Player extends Character{
                         System.out.println("Your current score is " + this.score);
                     } else if ("compass".equalsIgnoreCase(command[1])) {
                         System.out.println("You take a moment to check the device.");
-                        System.out.println("The compass is pointing " + Location.findDirection() + ".");
+                        System.out.println("The compass is pointing " + Location.findDirection().getLowercase() + ".");
                         System.out.println("The display reads: " + Location.calculateDistance() + " miles.");
                     } else {
                         System.out.println("Invalid arguments, can only check compass or score");
