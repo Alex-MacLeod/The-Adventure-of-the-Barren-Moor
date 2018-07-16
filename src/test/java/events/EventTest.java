@@ -2,7 +2,6 @@ package events;
 
 import game.event.Event;
 import game.event.SmallTreasure;
-import game.event.Treasure;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
