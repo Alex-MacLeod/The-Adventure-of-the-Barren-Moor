@@ -12,7 +12,7 @@ public class LocationTest {
     @Test
     public void refresh_shouldRefreshWhenTooFarFromOrigin() {
         Location.setLocation(8, 8);
-        Location.refresh();
+        Location.reset();
         assertTrue(Location.getXCoord() <= 3 && Location.getYCoord() <= 3);
     }
 

@@ -25,7 +25,7 @@ public final class Location {
         relativeLocation = new int[]{xCoord, yCoord};
     }
 
-    public static void refresh() {
+    public static void reset() {
 	    int xPoint;
 	    int yPoint;
         do {

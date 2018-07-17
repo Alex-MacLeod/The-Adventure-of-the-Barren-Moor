@@ -33,7 +33,7 @@ public class RunGame {
 
 		do {
 			if (Location.isOrigin() || Location.calculateDistance() > RESET_DISTANCE) {
-				Location.refresh();
+				Location.reset();
 			}
 			player.decideNextAction();
 			if (Location.isOrigin()) {
