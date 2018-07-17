@@ -50,7 +50,6 @@ public final class Location {
 		if (Location.isOrigin()) {
 		    return Direction.UNKNOWN;
         }
-
 		if (Math.abs(angle) <= Math.PI/8) {
 			return Direction.EAST;
 		} else if (Math.abs(angle - Math.PI/4) <= Math.PI/8) {
@@ -82,7 +81,6 @@ public final class Location {
             return;
         }
 
-        System.out.println("You walk " + walkingDirection.toLowerCase() + " for one mile.");
         switch (walkingDirection) {
             case NORTH:
                 relativeLocation[1]--;
@@ -97,6 +95,9 @@ public final class Location {
                 relativeLocation[0]++;
                 break;
 	        default:
+                System.out.println("You can only walk North, South, East, or West");
+	            return;
         }
+        System.out.println("You walk " + walkingDirection.toLowerCase() + " for one mile.");
 	}
 }
