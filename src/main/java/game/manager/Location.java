@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class Location {
 
+    private static final int RESET_BOUND = 2;
     private static int[] relativeLocation = new int[]{0, 0};
 
 	private Location() {
@@ -28,8 +29,8 @@ public final class Location {
 	    int xPoint;
 	    int yPoint;
         do {
-            xPoint = ThreadLocalRandom.current().nextInt(-2, 2 + 1);
-            yPoint = ThreadLocalRandom.current().nextInt(-2, 2 + 1);
+            xPoint = ThreadLocalRandom.current().nextInt(-RESET_BOUND, RESET_BOUND + 1);
+            yPoint = ThreadLocalRandom.current().nextInt(-RESET_BOUND, RESET_BOUND + 1);
         } while (xPoint == 0 && yPoint == 0);
 
 		relativeLocation[0] = xPoint;
@@ -46,7 +47,6 @@ public final class Location {
 
 	public static Direction findDirection() {
 	    double angle = Math.atan2(relativeLocation[1], relativeLocation[0]);
-
 		if (Location.isOrigin()) {
 		    return Direction.UNKNOWN;
         }
@@ -80,7 +80,6 @@ public final class Location {
             System.out.println("You can only walk North, South, East, or West");
             return;
         }
-
         switch (walkingDirection) {
             case NORTH:
                 relativeLocation[1]--;
