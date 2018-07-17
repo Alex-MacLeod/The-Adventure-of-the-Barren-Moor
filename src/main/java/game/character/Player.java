@@ -3,8 +3,6 @@ package game.character;
 import game.manager.Location;
 import game.util.Input;
 
-import java.util.Objects;
-
 public class Player extends Character{
 
 	private int score;
@@ -68,18 +66,5 @@ public class Player extends Character{
                 System.out.println("Did not recognise command \"" + command[0] + "\". Use the \"help\" command to see list of valid commands");
                 break;
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Player)) return false;
-        Player player = (Player) o;
-        return score == player.score && victorious == player.victorious;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(score, victorious);
     }
 }
