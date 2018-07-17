@@ -2,10 +2,6 @@ package game.event;
 
 public class Introduction extends Event {
 
-    public Introduction() {
-        super();
-    }
-
     @Override
     public void play() {
         System.out.println("You awaken to find yourself alone, lying cold and wet on a barren moor.");
