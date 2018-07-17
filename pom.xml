@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>barrenMoor</groupId>
-  <artifactId>barrenMoor</artifactId>
+  <groupId>adventure-of-the-barren-moor</groupId>
+  <artifactId>adventure-of-the-barren-moor</artifactId>
   <version>0.0.2-SNAPSHOT</version>
     <build>
         <plugins>
@@ -19,7 +19,7 @@
     </build>
     <packaging>jar</packaging>
 
-  <name>barrenMoor</name>
+  <name>adventure-of-the-barren-moor</name>
   <url>http://maven.apache.org</url>
 
   <properties>
