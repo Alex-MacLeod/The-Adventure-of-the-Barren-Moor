@@ -1,6 +1,6 @@
 package game.manager;
 
-import game.util.Directions;
+import game.util.Direction;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -44,64 +44,59 @@ public final class Location {
 		return (float) Math.sqrt(Math.pow(relativeLocation[0], 2) + Math.pow(relativeLocation[1], 2));
 	}
 
-	public static Directions findDirection() {
+	public static Direction findDirection() {
 	    double angle = Math.atan2(relativeLocation[1], relativeLocation[0]);
 
 		if (Location.isOrigin()) {
-		    return Directions.UNKNOWN;
+		    return Direction.UNKNOWN;
         }
 
 		if (Math.abs(angle) <= Math.PI/8) {
-			return Directions.EAST;
+			return Direction.EAST;
 		} else if (Math.abs(angle - Math.PI/4) <= Math.PI/8) {
-			return Directions.NORTH_EAST;
+			return Direction.NORTH_EAST;
 		} else if (Math.abs(angle - Math.PI/2) <= Math.PI/8) {
-			return Directions.NORTH;
+			return Direction.NORTH;
 		} else if (Math.abs(angle - 3*Math.PI/4) <= Math.PI/8) {
-			return Directions.NORTH_WEST;
+			return Direction.NORTH_WEST;
 		} else if (Math.abs(angle + Math.PI/4) <= Math.PI/8) {
-			return Directions.SOUTH_EAST;
+			return Direction.SOUTH_EAST;
 		} else if (Math.abs(angle + Math.PI/2) <= Math.PI/8) {
-			return Directions.SOUTH;
+			return Direction.SOUTH;
 		} else if (Math.abs(angle + 3*Math.PI/4) <= Math.PI/8) {
-			return Directions.SOUTH_WEST;
+			return Direction.SOUTH_WEST;
 		} else if (Math.abs(angle) >= 7*Math.PI/8) {
-			return Directions.WEST;
+			return Direction.WEST;
 		} else {
 			System.err.println("Direction error, angle is: " + angle);
-			return Directions.UNKNOWN;
+			return Direction.UNKNOWN;
 		}
 	}
 	
 	public static void walk(String direction) {
-	    Directions walkingDirection = Directions.UNKNOWN;
-	    for (Directions dir : Directions.values()) {
-	        if (dir.toString().equalsIgnoreCase(direction)) {
-	            walkingDirection = dir;
-                break;
-            }
+	    Direction walkingDirection;
+	    try {
+            walkingDirection = Direction.valueOf(direction.toUpperCase());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println("You can only walk North, South, East, or West");
+            return;
         }
-        String notification = "You walk " + walkingDirection.getLowercase() + " for one mile.";
+
+        System.out.println("You walk " + walkingDirection.toLowerCase() + " for one mile.");
         switch (walkingDirection) {
             case NORTH:
                 relativeLocation[1]--;
-                System.out.println(notification);
                 break;
             case EAST:
                 relativeLocation[0]--;
-                System.out.println(notification);
                 break;
             case SOUTH:
                 relativeLocation[1]++;
-                System.out.println(notification);
                 break;
             case WEST:
                 relativeLocation[0]++;
-                System.out.println(notification);
                 break;
 	        default:
-                System.out.println("You can only walk North, South, East, or West");
-	            break;
         }
 	}
 }

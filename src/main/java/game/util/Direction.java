@@ -1,6 +1,6 @@
 package game.util;
 
-public enum Directions {
+public enum Direction {
 	NORTH("north"),
 	NORTH_EAST("north-east"),
 	EAST("east"),
@@ -11,13 +11,13 @@ public enum Directions {
 	NORTH_WEST("north-west"),
 	UNKNOWN("towards a nearby object");
 
-	private String lowercase;
+	private String lowerCase;
 
-	Directions(String lowercase) {
-		this.lowercase = lowercase;
+	Direction(String lowerCase) {
+		this.lowerCase = lowerCase;
 	}
 
-	public String getLowercase() {
-		return this.lowercase;
+	public String toLowerCase() {
+		return this.lowerCase;
 	}
 }
