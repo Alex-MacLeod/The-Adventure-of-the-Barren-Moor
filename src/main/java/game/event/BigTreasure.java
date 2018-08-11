@@ -2,10 +2,10 @@ package game.event;
 
 public class BigTreasure extends Treasure{
 
-    private static final int BIG_TREASURE = 5000;
+    private static final int BIG_TREASURE_VALUE = 5000;
 
     public BigTreasure() {
-        super(BIG_TREASURE);
+        super(BIG_TREASURE_VALUE);
     }
 
     @Override
