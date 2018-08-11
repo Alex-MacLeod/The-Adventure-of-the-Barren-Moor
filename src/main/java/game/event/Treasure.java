@@ -3,11 +3,9 @@ package game.event;
 abstract class Treasure implements Event{
 
     private int value;
-    private boolean opened;
 
 	Treasure(int value) {
 		this.value = value;
-        this.opened = false;
 	}
 
     @Override
@@ -17,12 +15,11 @@ abstract class Treasure implements Event{
 
     @Override
     public boolean isCompleted() {
-        return this.opened;
+        return true;
     }
 
     @Override
     public void play() {
-        this.opened = true;
 	    System.out.println("You take the treasure from the chest");
         System.out.println("You're one step closer to leaving the moor!");
     }
