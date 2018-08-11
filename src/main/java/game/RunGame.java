@@ -34,11 +34,8 @@ public class RunGame {
 		Destination destination = new Destination();
 
 		do {
-			if (Location.isOrigin() || Location.calculateDistance() > RESET_DISTANCE) {
-				Location.reset();
-			}
-			player.decideNextAction();
-			if (Location.isOrigin()) {
+			decideNextAction(player, destination);
+			if (destination.isAtOrigin()) {
 				int randomIndex = ThreadLocalRandom.current().nextInt(ZERO, eventList.size());
 				Event randomEvent = eventList.get(randomIndex);
 				System.out.println("You can now see what the device was pointing you towards");

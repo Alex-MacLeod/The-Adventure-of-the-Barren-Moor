@@ -1,31 +1,30 @@
 package game.manager;
 
-import game.util.Direction;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class Destination {
 
     private static final int RESET_BOUND = 2;
-    private static int[] relativeLocation = new int[]{0, 0};
+    private int[] relativeLocation = new int[]{0, 0};
 
 	public Destination() {
 		this.reset();
 	}
 
-    public static int getXCoord() {
-        return relativeLocation[0];
+    public int getXCoord() {
+        return this.relativeLocation[0];
     }
 
-    public static int getYCoord() {
-        return relativeLocation[1];
+    public int getYCoord() {
+        return this.relativeLocation[1];
     }
 
-    public static void setLocation(int xCoord, int yCoord) {
-        relativeLocation = new int[]{xCoord, yCoord};
+    public void setDestination(int xCoord, int yCoord) {
+        this.relativeLocation[0] = xCoord;
+        this.relativeLocation[1] = yCoord;
     }
 
-    public static void reset() {
+    public void reset() {
 	    int xPoint;
 	    int yPoint;
         do {
@@ -33,21 +32,35 @@ public final class Destination {
             yPoint = ThreadLocalRandom.current().nextInt(-RESET_BOUND, RESET_BOUND + 1);
         } while (xPoint == 0 && yPoint == 0);
 
-		relativeLocation[0] = xPoint;
-		relativeLocation[1] = yPoint;
+		this.setDestination(xPoint, yPoint);
 	}
 
-	public static boolean isOrigin() {
-		return relativeLocation[0] == 0 && relativeLocation[1] == 0;
+	public boolean isAtOrigin() {
+		return this.relativeLocation[0] == 0 && this.relativeLocation[1] == 0;
 	}
 	
-	public static float calculateDistance() {
-		return (float) Math.sqrt(Math.pow(relativeLocation[0], 2) + Math.pow(relativeLocation[1], 2));
+	public float calculateDistance() {
+		return (float) Math.sqrt(Math.pow(this.relativeLocation[0], 2) + Math.pow(this.relativeLocation[1], 2));
 	}
 
-	public static Direction findDirection() {
-	    double angle = Math.atan2(relativeLocation[1], relativeLocation[0]);
-		if (Location.isOrigin()) {
+    public enum Direction {
+        NORTH("north"), NORTH_EAST("north-east"), EAST("east"), SOUTH_EAST("south-east"), SOUTH("south"),
+        SOUTH_WEST("south-west"), WEST("west"), NORTH_WEST("north-west"), UNKNOWN("towards a nearby object");
+
+        private String lowerCase;
+
+        Direction(String lowerCase) {
+            this.lowerCase = lowerCase;
+        }
+
+        public String toLowerCase() {
+            return this.lowerCase;
+        }
+    }
+
+	public Direction findDirection() {
+	    double angle = Math.atan2(this.relativeLocation[1], this.relativeLocation[0]);
+		if (this.isAtOrigin()) {
 		    return Direction.UNKNOWN;
         }
 		if (Math.abs(angle) <= Math.PI/8) {
@@ -71,10 +84,10 @@ public final class Destination {
 			return Direction.UNKNOWN;
 		}
 	}
-	
-	public static void walk(String direction) {
-	    Direction walkingDirection;
-	    try {
+
+    public void walk(String direction) {
+        Direction walkingDirection;
+        try {
             walkingDirection = Direction.valueOf(direction.toUpperCase());
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println("You can only walk North, South, East, or West");
@@ -82,21 +95,21 @@ public final class Destination {
         }
         switch (walkingDirection) {
             case NORTH:
-                relativeLocation[1]--;
+                this.relativeLocation[1]--;
                 break;
             case EAST:
-                relativeLocation[0]--;
+                this.relativeLocation[0]--;
                 break;
             case SOUTH:
-                relativeLocation[1]++;
+                this.relativeLocation[1]++;
                 break;
             case WEST:
-                relativeLocation[0]++;
+                this.relativeLocation[0]++;
                 break;
-	        default:
+            default:
                 System.out.println("You can only walk North, South, East, or West");
-	            return;
+                return;
         }
         System.out.println("You walk " + walkingDirection.toLowerCase() + " for one mile.");
-	}
+    }
 }
