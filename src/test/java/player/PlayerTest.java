@@ -22,7 +22,7 @@ public class PlayerTest {
     @Test
     public void addPoints_shouldAddAnyValueToPlayerScore() {
         int pointsToAdd = 5000;
-        Player testPlayer2 = new Player ("Procopis");
+        Player testPlayer2 = new Player("Procopis");
 
         assertEquals(0, testPlayer2.getScore());
 
@@ -31,18 +31,28 @@ public class PlayerTest {
     }
 
     @Test
-    public void wins_shouldSetVictoriousToTrue() {
-        Player testPlayer3 = new Player("Deaglan");
+    public void addPoints_shouldNotAllowPointDeduction() {
+        int pointsToAdd = -5000;
+        Player testPlayer3 = new Player("Ashley");
 
-        assertFalse(testPlayer3.isVictorious());
+        assertEquals(0, testPlayer3.getScore());
 
-        testPlayer3.wins();
-        assertTrue(testPlayer3.isVictorious());
+        try {
+            testPlayer3.addPoints(pointsToAdd);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        assertEquals(0, testPlayer3.getScore());
     }
 
-//    @Test
-//    public void decideNextAction_should() {
-//
-//    }
+    @Test
+    public void wins_shouldSetVictoriousToTrue() {
+        Player testPlayer4 = new Player("Deaglan");
+
+        assertFalse(testPlayer4.isVictorious());
+
+        testPlayer4.wins();
+        assertTrue(testPlayer4.isVictorious());
+    }
 
 }

@@ -16,6 +16,9 @@ public class Player extends Character{
 	}
 
 	public void addPoints(int points) {
+	    if (points < 0) {
+	        throw new IllegalArgumentException("Cannot add negative points");
+        }
 		this.score += points;
 	}
 
