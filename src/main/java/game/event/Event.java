@@ -1,29 +1,10 @@
 package game.event;
 
-public abstract class Event {
-	private final int value;
-	private boolean completed;
+public interface Event {
 
-	Event(int value) {
-		this.value = value;
-		this.completed = false;
-	}
+	int getValue();
 
-	Event() {
-		this.value = 0;
-		this.completed = false;
-	}
+	boolean isCompleted();
 
-	public int getValue() {
-		return value;
-	}
-
-	public boolean isCompleted() {
-		return completed;
-	}
-
-	public void play() {
-		this.completed = true;
-	}
-
+	void play();
 }
