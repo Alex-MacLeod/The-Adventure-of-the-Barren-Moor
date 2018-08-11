@@ -1,8 +1,5 @@
 package game.character;
 
-import game.manager.Location;
-import game.util.Input;
-
 public class Player extends Character{
 
 	private int score;

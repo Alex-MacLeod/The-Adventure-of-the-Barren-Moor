@@ -1,7 +1,7 @@
 package game;
 
 import game.event.*;
-import game.manager.Location;
+import game.manager.Destination;
 import game.character.Player;
 import game.util.Input;
 
@@ -31,6 +31,8 @@ public class RunGame {
 
 		introduction.play();
 
+		Destination destination = new Destination();
+
 		do {
 			if (Location.isOrigin() || Location.calculateDistance() > RESET_DISTANCE) {
 				Location.reset();
@@ -54,6 +56,10 @@ public class RunGame {
 					player.wins();
 				}
 			}
+			if (destination.isAtOrigin() || destination.calculateDistance() > RESET_DISTANCE) {
+				destination.reset();
+			}
+
 		} while (!player.isVictorious());
 
 		Input.scan.close();

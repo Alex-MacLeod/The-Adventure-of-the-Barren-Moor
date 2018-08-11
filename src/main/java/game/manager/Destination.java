@@ -4,13 +4,13 @@ import game.util.Direction;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class Location {
+public final class Destination {
 
     private static final int RESET_BOUND = 2;
     private static int[] relativeLocation = new int[]{0, 0};
 
-	private Location() {
-
+	public Destination() {
+		this.reset();
 	}
 
     public static int getXCoord() {
