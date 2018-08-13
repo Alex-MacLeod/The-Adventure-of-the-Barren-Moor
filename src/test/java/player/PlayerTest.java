@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class PlayerTest {
 
     @Test
-    public void addPoints_shouldAdd10000ToPlayerScore() {
+    public void addPointsShouldAdd10000ToPlayerScore() {
         Player testPlayer1 = new Player("David");
 
         assertEquals(0, testPlayer1.getScore());
@@ -20,7 +20,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void addPoints_shouldAddAnyValueToPlayerScore() {
+    public void addPointsShouldAddAnyValueToPlayerScore() {
         int pointsToAdd = 5000;
         Player testPlayer2 = new Player("Procopis");
 
@@ -31,7 +31,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void addPoints_shouldNotAllowPointDeduction() {
+    public void addPointsShouldNotAllowPointDeduction() {
         int pointsToAdd = -5000;
         Player testPlayer3 = new Player("Ashley");
 
@@ -46,7 +46,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void wins_shouldSetVictoriousToTrue() {
+    public void winsShouldSetVictoriousToTrue() {
         Player testPlayer4 = new Player("Deaglan");
 
         assertFalse(testPlayer4.isVictorious());

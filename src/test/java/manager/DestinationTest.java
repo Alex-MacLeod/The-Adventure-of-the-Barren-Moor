@@ -16,14 +16,14 @@ public class DestinationTest {
     private int originalYCoord;
 
     @Before
-    public void setup() {
+    public void setUp() {
         testDestination = new Destination();
         originalXCoord = testDestination.getXCoord();
         originalYCoord = testDestination.getYCoord();
     }
 
     @Test
-    public void setDestination_shouldSetDestination() {
+    public void setDestinationShouldSetDestination() {
         if (originalXCoord == 2 || originalYCoord == 1) {
             testDestination.setDestination(3,4);
 
@@ -38,7 +38,7 @@ public class DestinationTest {
     }
 
     @Test
-    public void reset_shouldRefreshWhenTooFarFromOrigin() {
+    public void resetShouldRefreshWhenTooFarFromOrigin() {
         testDestination.setDestination(8, 8);
         testDestination.reset();
 
@@ -46,119 +46,119 @@ public class DestinationTest {
     }
 
     @Test
-    public void isAtOrigin_shouldReturnTrueIfAtOrigin() {
+    public void isAtOriginShouldReturnTrueIfAtOrigin() {
         testDestination.setDestination(0, 0);
 
         assertTrue(testDestination.isAtOrigin());
     }
 
     @Test
-    public void isAtOrigin_shouldReturnFalseIfNotAtOrigin() {
+    public void isAtOriginShouldReturnFalseIfNotAtOrigin() {
         testDestination.setDestination(1, 0);
 
         assertFalse(testDestination.isAtOrigin());
     }
 
     @Test
-    public void calculateDistance_shouldCalculateTheAbsoluteDistanceToLocation() {
+    public void calculateDistanceShouldCalculateTheAbsoluteDistanceToLocation() {
         testDestination.setDestination(4, 3);
 
         assertEquals((float) 5, testDestination.calculateDistance(), 0.01);
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsNorth() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsNorth() {
         testDestination.setDestination(0, 3);
 
         assertEquals(Destination.Direction.NORTH, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsNorthEast() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsNorthEast() {
         testDestination.setDestination(2, 2);
 
         assertEquals(Destination.Direction.NORTH_EAST, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsEast() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsEast() {
         testDestination.setDestination(4, 0);
 
         assertEquals(Destination.Direction.EAST, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsSouthEast() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsSouthEast() {
         testDestination.setDestination(1, -1);
 
         assertEquals(Destination.Direction.SOUTH_EAST, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsSouth() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsSouth() {
         testDestination.setDestination(0, -5);
 
         assertEquals(Destination.Direction.SOUTH, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsSouthWest() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsSouthWest() {
         testDestination.setDestination(-3, -3);
 
         assertEquals(Destination.Direction.SOUTH_WEST, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsWest() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsWest() {
         testDestination.setDestination(-6, 0);
 
         assertEquals(Destination.Direction.WEST, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldDetermineDirectionOfTravelIsNorthWest() {
+    public void findDirectionShouldDetermineDirectionOfTravelIsNorthWest() {
         testDestination.setDestination(-2, 2);
 
         assertEquals(Destination.Direction.NORTH_WEST, testDestination.findDirection());
     }
 
     @Test
-    public void findDirection_shouldReturnUnknownIfAtOrigin() {
+    public void findDirectionShouldReturnUnknownIfAtOrigin() {
         testDestination.setDestination(0, 0);
 
         assertEquals(Destination.Direction.UNKNOWN, testDestination.findDirection());
     }
 
     @Test
-    public void walk_shouldMovePlayerNorth() {
+    public void walkShouldMovePlayerNorth() {
         testDestination.walk("north");
 
         assertEquals(originalYCoord - 1, testDestination.getYCoord());
     }
 
     @Test
-    public void walk_shouldMovePlayerEast() {
+    public void walkShouldMovePlayerEast() {
         testDestination.walk("east");
 
         assertEquals(originalXCoord - 1, testDestination.getXCoord());
     }
 
     @Test
-    public void walk_shouldMovePlayerSouth() {
+    public void walkShouldMovePlayerSouth() {
         testDestination.walk("South");
 
         assertEquals(originalYCoord + 1, testDestination.getYCoord());
     }
 
     @Test
-    public void walk_shouldMovePlayerWest() {
+    public void walkShouldMovePlayerWest() {
         testDestination.walk("West");
 
         assertEquals(originalXCoord + 1, testDestination.getXCoord());
     }
 
     @Test
-    public void walk_shouldNotMovePlayerIfUnknownDirection() {
+    public void walkShouldNotMovePlayerIfUnknownDirection() {
         testDestination.walk("behind");
 
         assertEquals(originalXCoord, testDestination.getXCoord());
